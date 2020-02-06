@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="springMybatis0204_ex.customer.mapperInterface.CustomerMapper">
+	<resultMap type="Customer" id="customerMap">
+		<result property="customerId" column="customer_id"/>
+		<result property="userId" column="user_id"/>
+		<result property="name" column="name"/>
+		<result property="birth" column="birth"/>
+		<result property="regDate" column="reg_date"/>
+		<result property="reviewCnt" column="review_cnt"/>
+	</resultMap>
+	
+	<resultMap type="Review" id="reviewMap">
+		<result property="reviewId" column="reviewId"/>
+		<result property="customerId" column="customer_id"/>
+		<result property="review" column="review"/>
+	</resultMap>
+	
+	<insert id="insert">
+		insert into customer values(#{customerId},#{userId},#{name},#{birth},#{regDate},#{reviewCnt})
+	</insert>
+	
+	<select id="readList" resultType="Customer">
+		select * from customer
+	</select>
+	
+	<update id="update">
+		update customer set name=#{name}, birth=#{birth}, review_cnt=#{reviewCnt} where customer_id=#{customerId}
+	</update>
+</mapper>
